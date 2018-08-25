@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app="aqsApp">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Array Query Selector Test App ${title}</title>
+		<meta name="description" content="Array select and transform utility" />
+		<meta name="keywords" content="aqs" />
+		<meta name="author" content="Constantine" />
+		<link rel="shortcut icon" href="test/icons/favicon.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+		<script src="https://code.angularjs.org/1.3.0-rc.2/i18n/angular-locale_ru-ru.js"></script>
+		<link rel="stylesheet" href="test/css/style.css">
+		<script src="test/lib/console.js"></script>
+		<script src="test/lib/AOUtils.js"></script>
+		<script src="test/js/test.js"></script>
+		<script src="src/AQS.js"></script>
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body ng-controller="aqsController">
+		<header>
+			<div class="row">
+				<div class="col-lg-2 pull-right">
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button
+								class="btn btn-default"
+								type="button"
+								ng-click="save()"
+								>
+								<span
+									class="glyphicon glyphicon-floppy-disk"
+									></span>
+								<span class="">&nbsp; Сохранить</span>
+							</button>
+							<button
+								class="btn btn-info"
+								type="button"
+								ng-click="load()"
+								>
+								<span
+									class="glyphicon glyphicon-folder-open"
+									></span>
+								<span class="">&nbsp; Загрузить</span>
+							</button>
+							<!-- onchange="angular.element(this).scope().loadFrom(this)"-->
+							<pre id="saved" class="hidden"></pre>
+							<input id="loadFile" type="file" class="hidden"/>
+						</span>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="container" role="main">
+			<form>
+				<div class="form-group">
+					<label for="edFind">Find</label>
+					<input type="text" class="form-control" id="edFind" aria-describedby="findHelp" placeholder="Find Query">
+					<small id="findHelp" class="form-text text-muted">{{findError}}</small>
+				</div>
+				<div class="form-group">
+					<label for="edTransform">Transform</label>
+					<input type="text" class="form-control" id="edTransform" aria-describedby="transformHelp" placeholder="Transform Query">
+					<small id="transformHelp" class="form-text text-muted">{{transformError}}</small>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="input-group-prepend">
+								<!--span class="input-group-text">Target Array</span-->
+								<label>Target Array</label>
+							</div>
+							<textarea class="form-control" aria-label="Target Array" ng-bind="model | stringifyJSON" style="height:500px"></textarea>
+						</div>
+						<div class="col-lg-6">
+							<div class="input-group-prepend">
+								<!--span class="input-group-text">Result Array</span-->
+								<label>Result Array</label>
+							</div>
+							<textarea class="form-control" aria-label="Result Array" ng-bind="result | stringifyJSON" style="height:500px"></textarea>
+						</div>
+					</div>
+				</div>
+				<!--div class="form-group form-check">
+				  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+				  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+				</div-->
+				<button type="button" class="btn btn-info" ng-click="run()">Run Test</button>
+			</form>
+		</main>
+		<footer class="footer">
+			<div class="container1">
+				<div class="input-group-prepend">
+					<!--label>Last Action: </label--><span class="text-muted small">&nbsp;Last Action: {{lastAction}}</span>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
